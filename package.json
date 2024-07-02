@@ -45,6 +45,7 @@
     "@commitlint/config-conventional": "^19.2.2",
     "@tanstack/router-devtools": "^1.43.4",
     "@tanstack/router-plugin": "^1.43.1",
+    "@types/chrome": "^0.0.268",
     "@types/lodash.capitalize": "^4.2.9",
     "@types/node": "^20.14.9",
     "@types/react": "^18.3.3",

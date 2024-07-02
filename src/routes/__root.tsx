@@ -13,14 +13,18 @@ const TanStackRouterDevtools =
         })),
       );
 const Route = createRootRoute({
-  component: () => (
+  component: () => <Root />,
+});
+
+function Root() {
+  return (
     <>
       <main className="p-4 md:p-16">
         <Outlet />
       </main>
       <TanStackRouterDevtools />
     </>
-  ),
-});
+  );
+}
 
 export { Route };
