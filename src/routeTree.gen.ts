@@ -16,6 +16,7 @@ import { Route as rootRoute } from "./routes/__root";
 import { Route as LoginImport } from "./routes/login";
 import { Route as protectedLayoutImport } from "./routes/(protected)/_layout";
 import { Route as protectedLayoutIndexImport } from "./routes/(protected)/_layout/index";
+import { Route as protectedLayoutApplicationIdImport } from "./routes/(protected)/_layout/application/$id";
 
 // Create Virtual Routes
 
@@ -54,6 +55,12 @@ const protectedLayoutFormLazyRoute = protectedLayoutFormLazyImport
   .lazy(() =>
     import("./routes/(protected)/_layout/form.lazy").then((d) => d.Route),
   );
+
+const protectedLayoutApplicationIdRoute =
+  protectedLayoutApplicationIdImport.update({
+    path: "/application/$id",
+    getParentRoute: () => protectedLayoutRoute,
+  } as any);
 
 // Populate the FileRoutesByPath interface
 
@@ -94,6 +101,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof protectedLayoutIndexImport;
       parentRoute: typeof protectedLayoutImport;
     };
+    "/(protected)/_layout/application/$id": {
+      id: "/_layout/application/$id";
+      path: "/application/$id";
+      fullPath: "/application/$id";
+      preLoaderRoute: typeof protectedLayoutApplicationIdImport;
+      parentRoute: typeof protectedLayoutImport;
+    };
   }
 }
 
@@ -105,6 +119,7 @@ export const routeTree = rootRoute.addChildren({
     protectedLayoutRoute: protectedLayoutRoute.addChildren({
       protectedLayoutFormLazyRoute,
       protectedLayoutIndexRoute,
+      protectedLayoutApplicationIdRoute,
     }),
   }),
 });
@@ -135,7 +150,8 @@ export const routeTree = rootRoute.addChildren({
       "parent": "/",
       "children": [
         "/_layout/form",
-        "/_layout/"
+        "/_layout/",
+        "/_layout/application/$id"
       ]
     },
     "/_layout/form": {
@@ -144,6 +160,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/_layout/": {
       "filePath": "(protected)/_layout/index.tsx",
+      "parent": "/_layout"
+    },
+    "/_layout/application/$id": {
+      "filePath": "(protected)/_layout/application/$id.tsx",
       "parent": "/_layout"
     }
   }

@@ -15,7 +15,7 @@ const TanStackRouterDevtools =
 const Route = createRootRoute({
   component: () => (
     <>
-      <main className="p-4">
+      <main className="p-4 md:p-16">
         <Outlet />
       </main>
       <TanStackRouterDevtools />
