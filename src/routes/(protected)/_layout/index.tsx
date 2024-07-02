@@ -9,9 +9,5 @@ export const Route = createFileRoute("/(protected)/_layout/")({
 function DashboardPage() {
   const { data, isLoading } = useGetApplications();
   if (isLoading) return <div>Loading...</div>;
-  return (
-    <div>
-      <ApplicationTable data={data ?? []} />
-    </div>
-  );
+  return <ApplicationTable data={data ?? []} />;
 }
