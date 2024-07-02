@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Job application tracker",
+  "version": "1.0.0",
+  "action": { "default_title": "Click to open panel" },
+  "permissions": ["storage", "sidePanel", "tabs"],
+  "side_panel": {
+    "default_path": "index.html"
+  },
+  "commands": {
+    "toggle_sidepanel": {
+      "suggested_key": {
+        "default": "Ctrl+J",
+        "mac": "Command+J"
+      },
+      "description": "Toggle the side panel"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.ts"
+  }
+}
