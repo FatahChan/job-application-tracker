@@ -1,34 +1,48 @@
-import type { ColumnDef, SortingState, VisibilityState } from '@tanstack/react-table';
+import type {
+  ColumnDef,
+  SortingState,
+  VisibilityState,
+} from "@tanstack/react-table";
 import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getSortedRowModel,
   useReactTable,
-} from '@tanstack/react-table';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+} from "@tanstack/react-table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from "@/components/ui/dropdown-menu";
 
-import { useState } from 'react';
-import { Button } from '../ui/button';
-import { Badge } from '../ui/badge';
-import { DebouncedInput } from '../ui/debouncedInput';
+import { useState } from "react";
+import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
+import { DebouncedInput } from "../ui/debouncedInput";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
-export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({
+  columns,
+  data,
+}: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [globalFilter, setGlobalFilter] = useState('');
+  const [globalFilter, setGlobalFilter] = useState("");
 
   const table = useReactTable({
     data,
@@ -46,7 +60,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
     <div>
       <div className="flex items-center py-4 gap-2">
         <DebouncedInput
-          value={globalFilter ?? ''}
+          value={globalFilter ?? ""}
           onChange={(e) => setGlobalFilter(String(e.target.value))}
           className="p-2 font-lg shadow border border-block"
           placeholder="Search all columns..."
@@ -56,7 +70,13 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
             <Button variant="outline" className="ml-auto relative">
               Columns
               <Badge className="absolute -right-2 -top-2">
-                {table.getAllColumns().filter((column) => column.getCanHide() && column.getIsVisible()).length}
+                {
+                  table
+                    .getAllColumns()
+                    .filter(
+                      (column) => column.getCanHide() && column.getIsVisible(),
+                    ).length
+                }
               </Badge>
             </Button>
           </DropdownMenuTrigger>
@@ -90,7 +110,9 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                     key={column.id}
                     className="capitalize"
                     checked={column.getIsVisible()}
-                    onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                    onCheckedChange={(value) =>
+                      column.toggleVisibility(!!value)
+                    }
                   >
                     {column.id}
                   </DropdownMenuCheckboxItem>
@@ -107,7 +129,12 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead key={header.id}>
-                      {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
                     </TableHead>
                   );
                 })}
@@ -117,15 +144,26 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
                   No results.
                 </TableCell>
               </TableRow>

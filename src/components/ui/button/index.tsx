@@ -22,8 +22,8 @@ const Button = React.memo(
           {...props}
         />
       );
-    }
-  )
+    },
+  ),
 );
 Button.displayName = "Button";
 

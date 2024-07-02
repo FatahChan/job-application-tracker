@@ -1,6 +1,12 @@
-import type { Control, FieldValues, Path } from 'react-hook-form';
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import type { Control, FieldValues, Path } from "react-hook-form";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
 function TextInputField<TFields extends FieldValues>({
   formControl,
@@ -19,7 +25,9 @@ function TextInputField<TFields extends FieldValues>({
       render={({ field }) => (
         <FormItem>
           <div className="flex gap-4 items-center">
-            <FormLabel className="capitalize leading-none">{label ?? field.name}</FormLabel>
+            <FormLabel className="capitalize leading-none">
+              {label ?? field.name}
+            </FormLabel>
             <FormMessage className="text-xs leading-none" />
           </div>
           <FormControl>

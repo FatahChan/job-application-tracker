@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint-staged": "lint-staged",
+    "commitlint": "commitlint --edit",
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",
@@ -37,6 +41,8 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@tanstack/router-devtools": "^1.43.4",
     "@tanstack/router-plugin": "^1.43.1",
     "@types/lodash.capitalize": "^4.2.9",
@@ -51,10 +57,24 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.2.2",
     "vite": "^5.3.2"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js}": [
+      "eslint --fix --max-warnings 0 .",
+      "prettier --write"
+    ],
+    "src/**/*.{html,css}": [
+      "prettier --write"
+    ],
+    "index.html": [
+      "prettier --write"
+    ]
   },
   "pnpm": {
     "patchedDependencies": {

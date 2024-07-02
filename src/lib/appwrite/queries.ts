@@ -9,18 +9,18 @@ async function getApplications(): Promise<Document<JobApplicationType>[]> {
   return (
     await databases.listDocuments<Document<JobApplicationType>>(
       DATABASE_ID,
-      COLLECTION_ID
+      COLLECTION_ID,
     )
   ).documents;
 }
 
 async function getApplication(
-  id: string
+  id: string,
 ): Promise<Document<JobApplicationType>> {
   return databases.getDocument<Document<JobApplicationType>>(
     DATABASE_ID,
     COLLECTION_ID,
-    id
+    id,
   );
 }
 

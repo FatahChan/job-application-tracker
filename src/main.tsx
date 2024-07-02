@@ -31,6 +31,6 @@ if (!rootElement.innerHTML) {
         <RouterProvider router={router} />
         <Toaster />
       </QueryClientProvider>
-    </StrictMode>
+    </StrictMode>,
   );
 }

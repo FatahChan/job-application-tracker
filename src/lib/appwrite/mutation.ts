@@ -17,7 +17,7 @@ async function createApplication(values: JobApplicationType) {
       Permission.read(Role.user(userId)),
       Permission.update(Role.user(userId)),
       Permission.delete(Role.user(userId)),
-    ]
+    ],
   );
 }
 async function deleteApplication(id: string) {

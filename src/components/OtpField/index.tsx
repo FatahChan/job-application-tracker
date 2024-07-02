@@ -1,7 +1,13 @@
-import type { FieldValues, Control, Path } from 'react-hook-form';
-import { FormField, FormItem, FormLabel, FormMessage, FormControl } from '@/components/ui/form';
+import type { FieldValues, Control, Path } from "react-hook-form";
+import {
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  FormControl,
+} from "@/components/ui/form";
 
-import { InputOTP, InputOTPGroup, InputOTPSlot } from '../ui/input-otp';
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
 
 function OtpField<TFields extends FieldValues>({
   formControl,

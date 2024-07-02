@@ -35,7 +35,7 @@ export function JobApplicationTrackerForm({
       acceptanceDate: null,
       ...defaultValues,
     }),
-    [defaultValues]
+    [defaultValues],
   );
 
   const form = useForm<z.infer<typeof formSchema>>({

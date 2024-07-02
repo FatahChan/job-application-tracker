@@ -1,7 +1,18 @@
-import { Select, SelectTrigger, SelectValue, SelectContent } from '@/components/ui/select';
-import type { PropsWithChildren } from 'react';
-import type { FieldValues, Control, Path } from 'react-hook-form';
-import { FormField, FormItem, FormLabel, FormMessage, FormControl } from '@/components/ui/form';
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+} from "@/components/ui/select";
+import type { PropsWithChildren } from "react";
+import type { FieldValues, Control, Path } from "react-hook-form";
+import {
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  FormControl,
+} from "@/components/ui/form";
 
 function SelectField<TFields extends FieldValues>({
   formControl,
@@ -20,7 +31,9 @@ function SelectField<TFields extends FieldValues>({
       render={({ field }) => (
         <FormItem>
           <div className="flex gap-4 items-center">
-            <FormLabel className="capitalize leading-none">{label ?? field.name}</FormLabel>
+            <FormLabel className="capitalize leading-none">
+              {label ?? field.name}
+            </FormLabel>
             <FormMessage className="text-xs leading-none" />
           </div>
           <Select onValueChange={field.onChange} defaultValue={field.value}>

@@ -1,15 +1,22 @@
-import { account } from '@/lib/appwrite';
-import { createFileRoute, lazyRouteComponent, redirect } from '@tanstack/react-router';
+import { account } from "@/lib/appwrite";
+import {
+  createFileRoute,
+  lazyRouteComponent,
+  redirect,
+} from "@tanstack/react-router";
 
-const LoginForm = lazyRouteComponent(() => import('../components/LoginForm'), 'LoginForm');
+const LoginForm = lazyRouteComponent(
+  () => import("../components/LoginForm"),
+  "LoginForm",
+);
 
-export const Route = createFileRoute('/login')({
+export const Route = createFileRoute("/login")({
   beforeLoad: async ({ location }) => {
     try {
       const user = await account.get();
       if (user?.$id) {
         throw redirect({
-          to: '/',
+          to: "/",
           search: { redirect: location.href },
         });
       }
