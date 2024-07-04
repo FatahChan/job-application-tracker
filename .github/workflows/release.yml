@@ -22,6 +22,19 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Change to https
+        run: |
+          git remote set-url origin https://github.com/FatahChan/job-application-tracker/
+
+      - name: Set Git identity
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Release draft
+        run: pnpm release-it --no-npm.publish --no-github.release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build the project
         run: pnpm build
 
@@ -29,16 +42,7 @@ jobs:
         run: |
           zip -r release.zip dist
 
-      - name: Set Git identity
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-
-      - name: Reset remote URL to use HTTPS
-        run: |
-            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-
       - name: Run release-it
-        run: pnpm release-it patch
+        run: pnpm release-it --ci --no-increment --no-git.changelog --no-plugins --no-hooks
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
