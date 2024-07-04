@@ -11,8 +11,7 @@
     "lint-staged": "lint-staged",
     "commitlint": "commitlint --edit",
     "format": "prettier --write .",
-    "prepare": "husky",
-    "release": "dotenv release-it --"
+    "prepare": "husky"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",
@@ -56,7 +55,6 @@
     "@vitejs/plugin-react-swc": "^3.5.0",
     "appwrite-cli": "^5.0.5",
     "autoprefixer": "^10.4.19",
-    "dotenv-cli": "^7.4.2",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
