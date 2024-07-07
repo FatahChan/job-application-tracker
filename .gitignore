@@ -27,5 +27,10 @@ dist-ssr
 
 
 # appwrite
-
 appwrite.json
+
+# zip build file
+*.zip
+
+# pnpm store
+.pnpm-store
