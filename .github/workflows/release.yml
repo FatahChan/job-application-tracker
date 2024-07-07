@@ -37,7 +37,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build the project
         run: pnpm build
-
+        env:
+          VITE_APPWRITE_PROJECT_ID: ${{ vars.VITE_APPWRITE_PROJECT_ID }}
+          VITE_APPWRITE_DATABASE_ID: ${{ vars.VITE_APPWRITE_DATABASE_ID }}
+          VITE_APPWRITE_COLLECTION_ID: ${{ vars.VITE_APPWRITE_COLLECTION_ID }}
       - name: Zip the dist directory
         run: |
           zip -r release.zip dist
