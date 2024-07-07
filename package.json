@@ -43,6 +43,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
+    "@release-it/conventional-changelog": "^6.0.0",
     "@tanstack/router-devtools": "^1.43.4",
     "@tanstack/router-plugin": "^1.43.1",
     "@types/chrome": "^0.0.268",
