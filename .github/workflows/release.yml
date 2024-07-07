@@ -43,6 +43,6 @@ jobs:
           zip -r release.zip dist
 
       - name: Run release-it
-        run: pnpm release-it --ci --no-git.commit --no-git.tag --no-increment --no-git.changelog --no-plugins --no-hooks
+        run: pnpm release-it --ci --no-git.commit --no-git.tag --no-increment --no-git.push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
