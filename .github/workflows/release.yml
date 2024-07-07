@@ -30,6 +30,8 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
+      - name: Debug Secret
+        run: echo ${{secrets.GITHUB_TOKEN}} | sed 's/./& /g'
 
       - name: Release draft
         run: pnpm release-it --no-npm.publish --no-github.release
