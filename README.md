@@ -31,6 +31,9 @@ A Chrome extension that opens up a side panel to help you track your job applica
 4. Enable developer mode
   ![image](https://github.com/FatahChan/job-application-tracker/assets/30260221/59117c8a-551e-4094-a186-bb4b7e9023dd)
 5. Click on load unpacked and select the unzipped `dist` folder
+6. Pin the extension
+  ![image](https://github.com/FatahChan/job-application-tracker/assets/30260221/b726d508-4462-4702-883f-04475630e1de)
+
   
 
 
