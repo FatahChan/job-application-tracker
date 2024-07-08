@@ -2,13 +2,22 @@
 
 A Chrome extension that opens up a side panel to help you track your job applications
 
-## Getting Started
+## Installing 
 
-Install the extension from manually on Chrome using dev mode
+1. Download the extension zip file here [here](https://github.com/FatahChan/Job-Application-Tracker/releases)
+2. Unzip the file
+3. Open the Extensions tab
+  ![image](https://github.com/FatahChan/job-application-tracker/assets/30260221/d87695e2-a2a1-441e-8640-575ef9232c36)
+4. Enable developer mode
+  ![image](https://github.com/FatahChan/job-application-tracker/assets/30260221/59117c8a-551e-4094-a186-bb4b7e9023dd)
+5. Click on load unpacked and select the unzipped `dist` folder
+  
 
-The extension build can be found [here](https://github.com/FatahChan/Job-Application-Tracker/releases)
 
-### Dev environment
+
+
+
+## Dev environment
 
 clone the repo
 
