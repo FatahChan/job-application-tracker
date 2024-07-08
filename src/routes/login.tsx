@@ -1,4 +1,4 @@
-import { account } from "@/lib/appwrite";
+import { checkIfUserIsLoggedIn } from "@/lib/appwrite/util";
 import {
   createFileRoute,
   lazyRouteComponent,
@@ -11,14 +11,11 @@ const LoginForm = lazyRouteComponent(
 );
 
 export const Route = createFileRoute("/login")({
-  beforeLoad: async ({ location }) => {
+  beforeLoad: async () => {
     try {
-      const user = await account.get();
+      const user = await checkIfUserIsLoggedIn();
       if (user?.$id) {
-        throw redirect({
-          to: "/",
-          search: { redirect: location.href },
-        });
+        throw redirect({ to: "/" });
       }
     } catch (e: unknown) {
       console.error(e);

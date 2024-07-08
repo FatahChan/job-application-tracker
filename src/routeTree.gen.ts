@@ -16,15 +16,13 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as LoginImport } from './routes/login'
 import { Route as protectedLayoutImport } from './routes/(protected)/_layout'
 import { Route as protectedLayoutIndexImport } from './routes/(protected)/_layout/index'
+import { Route as protectedLayoutApplicationIdImport } from './routes/(protected)/_layout/application/$id'
 
 // Create Virtual Routes
 
 const protectedImport = createFileRoute('/(protected)')()
 const protectedLayoutFormLazyImport = createFileRoute(
   '/(protected)/_layout/form',
-)()
-const protectedLayoutApplicationIdLazyImport = createFileRoute(
-  '/(protected)/_layout/application/$id',
 )()
 
 // Create/Update Routes
@@ -58,17 +56,11 @@ const protectedLayoutFormLazyRoute = protectedLayoutFormLazyImport
     import('./routes/(protected)/_layout/form.lazy').then((d) => d.Route),
   )
 
-const protectedLayoutApplicationIdLazyRoute =
-  protectedLayoutApplicationIdLazyImport
-    .update({
-      path: '/application/$id',
-      getParentRoute: () => protectedLayoutRoute,
-    } as any)
-    .lazy(() =>
-      import('./routes/(protected)/_layout/application/$id.lazy').then(
-        (d) => d.Route,
-      ),
-    )
+const protectedLayoutApplicationIdRoute =
+  protectedLayoutApplicationIdImport.update({
+    path: '/application/$id',
+    getParentRoute: () => protectedLayoutRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -113,7 +105,7 @@ declare module '@tanstack/react-router' {
       id: '/_layout/application/$id'
       path: '/application/$id'
       fullPath: '/application/$id'
-      preLoaderRoute: typeof protectedLayoutApplicationIdLazyImport
+      preLoaderRoute: typeof protectedLayoutApplicationIdImport
       parentRoute: typeof protectedLayoutImport
     }
   }
@@ -127,7 +119,7 @@ export const routeTree = rootRoute.addChildren({
     protectedLayoutRoute: protectedLayoutRoute.addChildren({
       protectedLayoutFormLazyRoute,
       protectedLayoutIndexRoute,
-      protectedLayoutApplicationIdLazyRoute,
+      protectedLayoutApplicationIdRoute,
     }),
   }),
 })
@@ -171,7 +163,7 @@ export const routeTree = rootRoute.addChildren({
       "parent": "/_layout"
     },
     "/_layout/application/$id": {
-      "filePath": "(protected)/_layout/application/$id.lazy.tsx",
+      "filePath": "(protected)/_layout/application/$id.tsx",
       "parent": "/_layout"
     }
   }
