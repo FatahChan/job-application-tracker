@@ -2,6 +2,26 @@
 
 A Chrome extension that opens up a side panel to help you track your job applications
 
+## Features
+
+#### New Application From
+<img width="740" alt="image" src="https://github.com/FatahChan/job-application-tracker/assets/30260221/9e0692c0-c783-45a0-bea8-e80f40eaf541">
+
+#### Applications Table With Filter and Search
+<img width="717" alt="image" src="https://github.com/FatahChan/job-application-tracker/assets/30260221/a02aea76-5b3a-4789-ae74-f447b91f33a7">
+
+#### Delete and Edit Actions
+<img width="202" alt="image" src="https://github.com/FatahChan/job-application-tracker/assets/30260221/4514e588-766e-4f14-92dc-a7aa104f2b48">
+
+
+### Pending Features
+
+- Auto-load applications from with data LinkedIn job is opened on the side
+- PDF application storage
+- Sync between devices
+
+
+
 ## Installing 
 
 1. Download the extension zip file here [here](https://github.com/FatahChan/Job-Application-Tracker/releases)
