@@ -7,7 +7,7 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "{{chrome}}.permissions": ["sidePanel"],
+  "{{chrome}}.permissions": ["sidePanel", "tabs"],
   "{{chrome}}.action": {
     "default_title": "Click to open panel"
   },
@@ -15,6 +15,13 @@
     "default_path": "src/index.html"
   },
   "background": {
-    "{{chrome}}.service_worker": "src/background.js"
-  }
+    "{{chrome}}.service_worker": "src/background.ts"
+  },
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "matches": ["https://www.linkedin.com/jobs/*"],
+      "js": ["src/content.ts"]
+    }
+  ]
 }

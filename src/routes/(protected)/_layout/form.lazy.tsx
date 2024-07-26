@@ -2,10 +2,11 @@ import {
   JobApplicationTrackerForm,
   type JobApplicationTrackerFormRefHandlers,
 } from "@/components/JobApplicationTrackerForm";
+import RequestJobPostingContentButton from "@/components/RequestJobPostingContentButton";
 import { useCreateApplication } from "@/lib/appwrite/mutation";
 import { JobApplicationType } from "@/schema/Application";
 import { createLazyFileRoute } from "@tanstack/react-router";
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export const Route = createLazyFileRoute("/(protected)/_layout/form")({
   component: () => <NewApplication />,
@@ -13,6 +14,9 @@ export const Route = createLazyFileRoute("/(protected)/_layout/form")({
 
 function NewApplication() {
   const mutation = useCreateApplication();
+  const [defaultValues, setDefaultValues] = useState<
+    Partial<JobApplicationType>
+  >({});
   const formRef = useRef<JobApplicationTrackerFormRefHandlers>(null);
 
   const handleSubmit = useCallback(
@@ -22,6 +26,25 @@ function NewApplication() {
     },
     [mutation]
   );
+  useEffect(() => {
+    for (const key in defaultValues) {
+      const k = key as keyof JobApplicationType;
+      formRef.current?.setValue(k, defaultValues[k]);
+    }
+  }, [defaultValues]);
 
-  return <JobApplicationTrackerForm ref={formRef} onSubmit={handleSubmit} />;
+  return (
+    <div className="relative">
+      <RequestJobPostingContentButton
+        className="top-0 right-0 absolute"
+        onSuccess={setDefaultValues}
+      />
+      <JobApplicationTrackerForm
+        ref={formRef}
+        className="pt-8"
+        onSubmit={handleSubmit}
+        defaultValues={defaultValues}
+      />
+    </div>
+  );
 }

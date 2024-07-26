@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, UseFormSetValue } from "react-hook-form";
 import type { z } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -12,20 +12,23 @@ import { Form } from "@/components/ui/form";
 
 import { type JobApplicationType, formSchema } from "@/schema/Application";
 import { forwardRef, useImperativeHandle, useMemo } from "react";
+import { cn } from "@/lib/utils";
 
 export type JobApplicationTrackerFormRefHandlers = {
   resetWithDefaultValues: () => void;
+  setValue: UseFormSetValue<JobApplicationType>;
 };
 
 type JobApplicationTrackerFormProps = {
   defaultValues?: Partial<JobApplicationType>;
   onSubmit?: (values: JobApplicationType) => Promise<void>;
+  className?: string;
 };
 
 export const JobApplicationTrackerForm = forwardRef<
   JobApplicationTrackerFormRefHandlers,
   JobApplicationTrackerFormProps
->(function ({ defaultValues, onSubmit }, ref) {
+>(function ({ defaultValues, onSubmit, className }, ref) {
   const _defaultValues: JobApplicationType = useMemo(
     () => ({
       role: "",
@@ -56,6 +59,7 @@ export const JobApplicationTrackerForm = forwardRef<
       resetWithDefaultValues: () => {
         form.reset(_defaultValues);
       },
+      setValue: form.setValue,
     };
   }, [form, _defaultValues]);
 
@@ -72,7 +76,7 @@ export const JobApplicationTrackerForm = forwardRef<
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
-        className="gap-8 grid grid-cols-1"
+        className={cn("gap-8 grid grid-cols-1", className)}
       >
         <TextInputField
           formControl={form.control}
