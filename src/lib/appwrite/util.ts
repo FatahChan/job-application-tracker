@@ -9,10 +9,10 @@ async function checkIfUserIsLoggedIn() {
   try {
     user = await account.get();
     if (!user?.$id) {
-      throw new Error("User is not logged in");
+      return null;
     }
   } catch (e) {
-    throw new Error("User is not logged in");
+    return null;
   }
   return user;
 }

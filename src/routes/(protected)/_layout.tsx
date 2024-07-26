@@ -15,13 +15,13 @@ export const Route = createRootRoute({
     try {
       user = await account.get();
     } catch (e) {
-      redirect({
+      throw redirect({
         to: "/login",
         search: { redirect: location.href },
       });
     }
     if (!user?.$id) {
-      redirect({
+      throw redirect({
         to: "/login",
         search: { redirect: location.href },
       });
