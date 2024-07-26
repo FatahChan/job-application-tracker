@@ -9,19 +9,26 @@ async function getApplications(): Promise<Document<JobApplicationType>[]> {
   return (
     await databases.listDocuments<Document<JobApplicationType>>(
       DATABASE_ID,
-      COLLECTION_ID,
+      COLLECTION_ID
     )
   ).documents;
 }
 
-async function getApplication(
-  id: string,
+export async function getApplication(
+  id: string
 ): Promise<Document<JobApplicationType>> {
-  return databases.getDocument<Document<JobApplicationType>>(
+  const data = databases.getDocument<Document<JobApplicationType>>(
     DATABASE_ID,
     COLLECTION_ID,
-    id,
+    id
   );
+  const { data: validatedData, success, error } = formSchema.safeParse(data);
+
+  if (!success) {
+    console.error(error);
+    throw new Error("Invalid data");
+  }
+  return validatedData as Document<JobApplicationType>;
 }
 
 export function useGetApplications() {

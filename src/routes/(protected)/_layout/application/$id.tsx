@@ -11,7 +11,8 @@ export const Route = createFileRoute("/(protected)/_layout/application/$id")({
 
 function Page() {
   const { id } = Route.useParams();
-  const { data } = useGetApplication(id);
+  const { data, isLoading } = useGetApplication(id);
+
   const mutation = useUpdateApplication();
   const handleSubmit = useCallback(
     async (values: JobApplicationType) => {
@@ -19,6 +20,7 @@ function Page() {
     },
     [id, mutation]
   );
+  if (isLoading) return null;
   return (
     <JobApplicationTrackerForm defaultValues={data} onSubmit={handleSubmit} />
   );
