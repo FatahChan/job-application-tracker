@@ -28,7 +28,7 @@ function LoginPage() {
   return (
     <div className="flex flex-col justify-center h-screen gap-40 max-w-96 m-auto">
       <h1 className="text-2xl font-extrabold text-center">Job Tracker</h1>
-      <LoginForm />;
+      <LoginForm />
     </div>
   );
 }

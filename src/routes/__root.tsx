@@ -9,7 +9,7 @@ const TanStackRouterDevtools =
           default: res.TanStackRouterDevtools,
           // For Embedded Mode
           // default: res.TanStackRouterDevtoolsPanel
-        }))
+        })),
       );
 const Route = createRootRoute({
   component: () => <Root />,
@@ -18,7 +18,7 @@ const Route = createRootRoute({
 function Root() {
   return (
     <>
-      <main className="p-4 md:p-16">
+      <main className="px-4 md:px-16">
         <Outlet />
       </main>
       <TanStackRouterDevtools />
