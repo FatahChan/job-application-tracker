@@ -8,7 +8,7 @@ import "./index.css";
 
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
-import NotFound from "./components/NotFound";
+import NotFound from "@/components/NotFound";
 
 // Create a new router instance
 const router = createRouter({
@@ -35,6 +35,6 @@ if (!rootElement.innerHTML) {
         <RouterProvider router={router} />
         <Toaster />
       </QueryClientProvider>
-    </StrictMode>,
+    </StrictMode>
   );
 }

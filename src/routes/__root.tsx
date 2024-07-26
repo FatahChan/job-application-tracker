@@ -1,6 +1,5 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import React from "react";
-
 const TanStackRouterDevtools =
   process.env.NODE_ENV === "production"
     ? () => null // Render nothing in production
@@ -19,7 +18,7 @@ const Route = createRootRoute({
 function Root() {
   return (
     <>
-      <main className="p-4 md:p-16">
+      <main className="px-4 md:px-16">
         <Outlet />
       </main>
       <TanStackRouterDevtools />
