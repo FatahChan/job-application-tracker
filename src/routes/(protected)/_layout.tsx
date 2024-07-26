@@ -15,13 +15,13 @@ export const Route = createRootRoute({
     try {
       user = await account.get();
     } catch (e) {
-      throw redirect({
+      redirect({
         to: "/login",
         search: { redirect: location.href },
       });
     }
     if (!user?.$id) {
-      throw redirect({
+      redirect({
         to: "/login",
         search: { redirect: location.href },
       });
@@ -39,7 +39,7 @@ function Root() {
   return (
     <>
       <nav className="flex justify-between items-center">
-        <div className="p-2 flex gap-4">
+        <div className="flex gap-4 p-2">
           <Link to="/" className="[&.active]:font-bold [&.active]:underline">
             Dashboard
           </Link>
@@ -50,7 +50,7 @@ function Root() {
             New Application
           </Link>
         </div>
-        <div className="p-2 flex gap-4">
+        <div className="flex gap-4 p-2">
           <Button variant={"destructive"} size={"sm"} onClick={handleLogout}>
             Logout
           </Button>
