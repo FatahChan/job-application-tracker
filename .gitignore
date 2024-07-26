@@ -23,6 +23,19 @@ dist-ssr
 *.sln
 *.sw?
 
+# env
+.env
+.env.*
+
+# appwrite
+appwrite.json
+
+# zip build file
+*.zip
+
+# pnpm store
+.pnpm-store
+
 # Config files
 .webextrc
 .webextrc.*
