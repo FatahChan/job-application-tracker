@@ -11,15 +11,21 @@ import SelectField from "../SelectField";
 import { Form } from "@/components/ui/form";
 
 import { type JobApplicationType, formSchema } from "@/schema/Application";
-import { useMemo } from "react";
+import { forwardRef, useImperativeHandle, useMemo } from "react";
 
-export function JobApplicationTrackerForm({
-  defaultValues,
-  onSubmit,
-}: {
+export type JobApplicationTrackerFormRefHandlers = {
+  resetWithDefaultValues: () => void;
+};
+
+type JobApplicationTrackerFormProps = {
   defaultValues?: Partial<JobApplicationType>;
   onSubmit?: (values: JobApplicationType) => Promise<void>;
-}) {
+};
+
+export const JobApplicationTrackerForm = forwardRef<
+  JobApplicationTrackerFormRefHandlers,
+  JobApplicationTrackerFormProps
+>(function ({ defaultValues, onSubmit }, ref) {
   const _defaultValues: JobApplicationType = useMemo(
     () => ({
       role: "",
@@ -35,7 +41,7 @@ export function JobApplicationTrackerForm({
       acceptanceDate: null,
       ...defaultValues,
     }),
-    [defaultValues],
+    [defaultValues]
   );
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -45,12 +51,19 @@ export function JobApplicationTrackerForm({
     defaultValues: _defaultValues,
   });
 
+  useImperativeHandle(ref, () => {
+    return {
+      resetWithDefaultValues: () => {
+        form.reset(_defaultValues);
+      },
+    };
+  }, [form, _defaultValues]);
+
   const handleSubmit = async (values: JobApplicationType) => {
     try {
       await onSubmit?.(values).catch((e) => {
         throw e;
       });
-      form.reset(_defaultValues);
     } catch (e) {
       console.error(e);
     }
@@ -59,7 +72,7 @@ export function JobApplicationTrackerForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
-        className="grid grid-cols-1 gap-8"
+        className="gap-8 grid grid-cols-1"
       >
         <TextInputField
           formControl={form.control}
@@ -157,4 +170,4 @@ export function JobApplicationTrackerForm({
       </form>
     </Form>
   );
-}
+});

@@ -1,8 +1,11 @@
-import { JobApplicationTrackerForm } from "@/components/JobApplicationTrackerForm";
+import {
+  JobApplicationTrackerForm,
+  type JobApplicationTrackerFormRefHandlers,
+} from "@/components/JobApplicationTrackerForm";
 import { useCreateApplication } from "@/lib/appwrite/mutation";
 import { JobApplicationType } from "@/schema/Application";
 import { createLazyFileRoute } from "@tanstack/react-router";
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 
 export const Route = createLazyFileRoute("/(protected)/_layout/form")({
   component: () => <NewApplication />,
@@ -10,12 +13,15 @@ export const Route = createLazyFileRoute("/(protected)/_layout/form")({
 
 function NewApplication() {
   const mutation = useCreateApplication();
+  const formRef = useRef<JobApplicationTrackerFormRefHandlers>(null);
+
   const handleSubmit = useCallback(
     async (values: JobApplicationType) => {
       mutation.mutate(values);
+      formRef.current?.resetWithDefaultValues();
     },
-    [mutation],
+    [mutation]
   );
 
-  return <JobApplicationTrackerForm onSubmit={handleSubmit} />;
+  return <JobApplicationTrackerForm ref={formRef} onSubmit={handleSubmit} />;
 }

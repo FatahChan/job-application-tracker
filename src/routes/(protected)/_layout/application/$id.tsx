@@ -17,7 +17,7 @@ function Page() {
     async (values: JobApplicationType) => {
       mutation.mutate({ id, values });
     },
-    [id, mutation],
+    [id, mutation]
   );
   return (
     <JobApplicationTrackerForm defaultValues={data} onSubmit={handleSubmit} />
