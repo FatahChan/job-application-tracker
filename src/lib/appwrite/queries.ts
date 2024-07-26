@@ -14,21 +14,12 @@ async function getApplications(): Promise<Document<JobApplicationType>[]> {
   ).documents;
 }
 
-export async function getApplication(
-  id: string
-): Promise<Document<JobApplicationType>> {
-  const data = databases.getDocument<Document<JobApplicationType>>(
+export async function getApplication(id: string) {
+  return databases.getDocument<Document<JobApplicationType>>(
     DATABASE_ID,
     COLLECTION_ID,
     id
   );
-  const { data: validatedData, success, error } = formSchema.safeParse(data);
-
-  if (!success) {
-    console.error(error);
-    throw new Error("Invalid data");
-  }
-  return validatedData as Document<JobApplicationType>;
 }
 
 export function useGetApplications() {
