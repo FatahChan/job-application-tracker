@@ -1,5 +1,12 @@
 
 
+## 0.1.1 (2024-11-04)
+
+
+### Bug Fixes
+
+* not getting every document ([b21f661](https://github.com/FatahChan/job-application-tracker/commit/b21f66143587112d35528272a4c231365e8afc30))
+
 # 0.1.0 (2024-07-26)
 
 
