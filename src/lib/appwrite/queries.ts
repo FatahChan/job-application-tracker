@@ -2,6 +2,7 @@ import type { JobApplicationType } from "@/schema/Application";
 import { formSchema } from "@/schema/Application";
 import { DATABASE_ID, databases, COLLECTION_ID, type Document } from ".";
 import { useQuery } from "@tanstack/react-query";
+import { Query } from "appwrite";
 
 export const QUERY_KEY = "jobApplications";
 
@@ -9,7 +10,8 @@ async function getApplications(): Promise<Document<JobApplicationType>[]> {
   return (
     await databases.listDocuments<Document<JobApplicationType>>(
       DATABASE_ID,
-      COLLECTION_ID
+      COLLECTION_ID,
+      [Query.limit(1000)], // TODO: pagination
     )
   ).documents;
 }
@@ -18,7 +20,7 @@ export async function getApplication(id: string) {
   return databases.getDocument<Document<JobApplicationType>>(
     DATABASE_ID,
     COLLECTION_ID,
-    id
+    id,
   );
 }
 
