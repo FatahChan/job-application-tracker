@@ -2,6 +2,7 @@
   "name": "job-application-tracker",
   "private": true,
   "version": "0.1.1",
+  "description": "Track your job applications in a side panel. Fill details from LinkedIn job pages in one click. Data stays on your device.",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -24,11 +25,9 @@
     "@tanstack/react-query": "^5.51.15",
     "@tanstack/react-router": "^1.45.11",
     "@tanstack/react-table": "^8.19.3",
-    "appwrite": "^15.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
-    "input-otp": "^1.2.4",
     "lodash.capitalize": "^4.2.1",
     "lucide-react": "^0.399.0",
     "next-themes": "^0.3.0",
@@ -56,7 +55,6 @@
     "@typescript-eslint/parser": "^7.17.0",
     "@vitejs/plugin-react": "^4.3.1",
     "@vitejs/plugin-react-swc": "^3.7.0",
-    "appwrite-cli": "^5.0.5",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
@@ -82,10 +80,5 @@
     "index.html": [
       "prettier --write"
     ]
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "appwrite-cli@5.0.5": "patches/appwrite-cli@5.0.5.patch"
-    }
   }
 }

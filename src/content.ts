@@ -36,7 +36,9 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
   } catch (error) {
     // @ts-expect-error - sendResponse takes in arguments
-    sendResponse({ error: error });
+    sendResponse({
+      error: error instanceof Error ? error.message : String(error),
+    });
     return true;
   }
   // @ts-expect-error - sendResponse takes in arguments

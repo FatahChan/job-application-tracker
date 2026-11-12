@@ -1,41 +1,18 @@
 import { Button } from "@/components/ui/button";
-import { account } from "@/lib/appwrite";
 import {
-  createRootRoute,
-  Link,
-  Outlet,
-  redirect,
-  useNavigate,
-} from "@tanstack/react-router";
-import { useCallback } from "react";
+  exportApplications,
+  useImportApplications,
+} from "@/lib/storage/mutation";
+import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import { useRef } from "react";
 
 export const Route = createRootRoute({
-  beforeLoad: async ({ location }) => {
-    let user;
-    try {
-      user = await account.get();
-    } catch (e) {
-      throw redirect({
-        to: "/login",
-        search: { redirect: location.href },
-      });
-    }
-    if (!user?.$id) {
-      throw redirect({
-        to: "/login",
-        search: { redirect: location.href },
-      });
-    }
-  },
   component: () => <Root />,
 });
 
 function Root() {
-  const navigate = useNavigate();
-  const handleLogout = useCallback(async () => {
-    await account.deleteSession("current");
-    navigate({ to: "/login" });
-  }, [navigate]);
+  const importMutation = useImportApplications();
+  const fileInputRef = useRef<HTMLInputElement>(null);
   return (
     <>
       <nav className="flex justify-between items-center">
@@ -50,10 +27,29 @@ function Root() {
             New Application
           </Link>
         </div>
-        <div className="flex gap-4 p-2">
-          <Button variant={"destructive"} size={"sm"} onClick={handleLogout}>
-            Logout
+        <div className="flex gap-2 p-2">
+          <Button variant={"outline"} size={"sm"} onClick={exportApplications}>
+            Export
           </Button>
+          <Button
+            variant={"outline"}
+            size={"sm"}
+            disabled={importMutation.isPending}
+            onClick={() => fileInputRef.current?.click()}
+          >
+            Import
+          </Button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="application/json"
+            className="hidden"
+            onChange={async (event) => {
+              const file = event.target.files?.[0];
+              event.target.value = "";
+              if (file) importMutation.mutate(await file.text());
+            }}
+          />
         </div>
       </nav>
       <hr />

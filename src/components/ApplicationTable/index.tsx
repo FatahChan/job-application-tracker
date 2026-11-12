@@ -3,7 +3,7 @@ import { DataTable } from "../DataTable";
 import type { ColumnDef } from "@tanstack/react-table";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Actions } from "./ActionsCell";
-import type { Document } from "@/lib/appwrite";
+import type { Document } from "@/lib/storage";
 import SortableHeader from "./SortableHeader";
 import capitalize from "lodash.capitalize";
 

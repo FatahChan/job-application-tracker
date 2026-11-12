@@ -1,4 +1,3 @@
-import { checkIfUserIsLoggedIn } from "@/lib/appwrite/util";
 import { useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, useMemo } from "react";
 
@@ -11,17 +10,7 @@ function NotFound() {
   );
   useEffect(() => {
     // Redirect to the root if the user is on the index page
-    (async () => {
-      if (isIndexPage) {
-        try {
-          await checkIfUserIsLoggedIn();
-        } catch (e) {
-          navigate({ to: "/login" });
-          return;
-        }
-        navigate({ to: "/" });
-      }
-    })();
+    if (isIndexPage) navigate({ to: "/" });
   }, [navigate, isIndexPage]);
 
   if (isIndexPage || routerState.isLoading) return null;

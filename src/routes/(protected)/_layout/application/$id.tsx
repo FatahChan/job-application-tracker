@@ -1,6 +1,6 @@
 import { JobApplicationTrackerForm } from "@/components/JobApplicationTrackerForm";
-import { useUpdateApplication } from "@/lib/appwrite/mutation";
-import { useGetApplication } from "@/lib/appwrite/queries";
+import { useUpdateApplication } from "@/lib/storage/mutation";
+import { useGetApplication } from "@/lib/storage/queries";
 import { JobApplicationType } from "@/schema/Application";
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback } from "react";
