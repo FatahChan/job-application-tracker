@@ -1,7 +1,7 @@
 {
   "name": "job-application-tracker",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.1.1",
   "description": "Track your job applications in a side panel. Fill details from LinkedIn job pages in one click. Data stays on your device.",
   "type": "module",
   "scripts": {

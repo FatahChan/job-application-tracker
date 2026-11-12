@@ -76,7 +76,7 @@ export async function exportApplications() {
   link.href = url;
   link.download = `job-applications-${new Date().toISOString().slice(0, 10)}.json`;
   link.click();
-  URL.revokeObjectURL(url);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 export function useCreateApplication(onSuccess?: () => void) {

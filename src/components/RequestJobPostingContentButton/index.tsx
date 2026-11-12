@@ -28,9 +28,16 @@ function RequestJobPostingContentButton({
         console.error("No active tab found");
         return;
       }
-      const response = await browser.tabs.sendMessage(firstTab.id, {
-        action: "parseJobPosting",
-      });
+      let response;
+      try {
+        response = await browser.tabs.sendMessage(firstTab.id, {
+          action: "parseJobPosting",
+        });
+      } catch {
+        // No content script on this tab, so it isn't a supported job page
+        toast.error("Open a LinkedIn job posting to fill the form");
+        return;
+      }
       if (response.error) {
         toast.error(response.error);
         return;
