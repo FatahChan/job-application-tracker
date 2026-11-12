@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useDeleteApplication } from "@/lib/appwrite/mutation";
+import { useDeleteApplication } from "@/lib/storage/mutation";
 import { Link } from "@tanstack/react-router";
 function Actions({ documentId }: { documentId: string }) {
   const deleteMutation = useDeleteApplication();

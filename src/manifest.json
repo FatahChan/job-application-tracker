@@ -1,4 +1,5 @@
 {
+  "name": "Job Application Tracker",
   "{{chrome}}.manifest_version": 3,
   "{{firefox}}.manifest_version": 2,
   "icons": {
@@ -7,9 +8,12 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "{{chrome}}.permissions": ["sidePanel", "tabs"],
+  "{{chrome}}.permissions": [
+    "sidePanel",
+    "storage"
+  ],
   "{{chrome}}.action": {
-    "default_title": "Click to open panel"
+    "default_title": "Open Job Application Tracker"
   },
   "{{chrome}}.side_panel": {
     "default_path": "src/index.html"
@@ -20,8 +24,12 @@
   "content_scripts": [
     {
       "all_frames": true,
-      "matches": ["https://www.linkedin.com/jobs/*"],
-      "js": ["src/content.ts"]
+      "matches": [
+        "https://www.linkedin.com/jobs/*"
+      ],
+      "js": [
+        "src/content.ts"
+      ]
     }
   ]
 }

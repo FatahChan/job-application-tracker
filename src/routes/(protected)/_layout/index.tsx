@@ -1,5 +1,5 @@
 import { ApplicationTable } from "@/components/ApplicationTable";
-import { useGetApplications } from "@/lib/appwrite/queries";
+import { useGetApplications } from "@/lib/storage/queries";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/(protected)/_layout/")({
